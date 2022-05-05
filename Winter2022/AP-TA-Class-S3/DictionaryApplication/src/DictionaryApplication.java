@@ -30,11 +30,15 @@ public class DictionaryApplication {
             case "add":
                 if (input.contains("\"")) {
                     addCommand(input);
+                } else {
+                    throw new Exception();
                 }
                 break;
             case "meaning":
                 if (input.contains("\"")) {
                     meanCommand(input);
+                } else {
+                    throw new Exception();
                 }
                 break;
             case "load-bin":
