@@ -3,7 +3,7 @@ package model;
 import java.util.HashMap;
 
 public class MyDictionary {
-    private HashMap<String, String> dictionaryMap;
+    private final HashMap<String, String> dictionaryMap;
 
     public MyDictionary() {
         dictionaryMap = new HashMap<>();
