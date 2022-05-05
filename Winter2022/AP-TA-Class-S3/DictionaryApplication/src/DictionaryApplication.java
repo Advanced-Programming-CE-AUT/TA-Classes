@@ -2,14 +2,17 @@ import exception.InvalidInputException;
 import model.MyDictionary;
 import utils.FileUtils;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class DictionaryApplication {
     private final MyDictionary myDictionary;
+    private final FileUtils fileUtils;
 
     public DictionaryApplication() {
         this.myDictionary = new MyDictionary();
+        this.fileUtils = new FileUtils();
     }
 
     public void run() {
@@ -17,13 +20,13 @@ public class DictionaryApplication {
         while (true) {
             try {
                 processInput(scanner.nextLine());
-            } catch (Exception e) {
+            } catch (InvalidInputException e) {
                 System.err.println(e.getMessage());
             }
         }
     }
 
-    private void processInput(String input) throws Exception {
+    private void processInput(String input) throws InvalidInputException {
         Scanner scanner = new Scanner(input);
         String command = scanner.next();
         switch (command) {
@@ -31,18 +34,18 @@ public class DictionaryApplication {
                 if (input.contains("\"")) {
                     addCommand(input);
                 } else {
-                    throw new Exception();
+                    throw new InvalidInputException();
                 }
                 break;
             case "meaning":
                 if (input.contains("\"")) {
                     meanCommand(input);
                 } else {
-                    throw new Exception();
+                    throw new InvalidInputException();
                 }
                 break;
             case "load-bin":
-                loadCommand(input);
+                loadBinCommand(input);
                 break;
             case "load-txt":
                 loadTxtCommand(input);
@@ -62,7 +65,43 @@ public class DictionaryApplication {
             case "help":
                 helpCommand();
             default:
-                throw new Exception();
+                throw new InvalidInputException();
+        }
+    }
+
+    private void outBinCommand(String input) {
+        String[] splitInput = input.split(" ");
+        String fileName = splitInput[1];
+        fileUtils.writeDictionaryMap(myDictionary.getDictionaryMap(), fileName);
+    }
+
+    private void outTxtCommand(String input) {
+        String[] splitInput = input.split(" ");
+        String fileName = splitInput[1];
+        fileUtils.outTxt(this.myDictionary.getDictionaryMap(), fileName);
+    }
+
+    private void loadTxtCommand(String input) throws InvalidInputException {
+        String[] splitInput = input.split(" ");
+        if (splitInput.length == 2) {
+            String fileName = splitInput[1];
+            HashMap<String, String> map = fileUtils.loadTxt(fileName);
+            this.myDictionary.putAllDictionaryMap(map);
+            updateDictionaryMap();
+        } else {
+            throw new InvalidInputException();
+        }
+    }
+
+    private void loadBinCommand(String input) throws InvalidInputException {
+        String[] splitInput = input.split(" ");
+        if (splitInput.length == 2) {
+            String filename = splitInput[1];
+            HashMap<String, String> map = fileUtils.readDictionaryMap(filename);
+            this.myDictionary.putAllDictionaryMap(map);
+            updateDictionaryMap();
+        } else {
+            throw new InvalidInputException();
         }
     }
 
@@ -74,7 +113,7 @@ public class DictionaryApplication {
                         "4- load-txt [file name] -- loads dictionary from a txt file (format of file : [word]:[description])\n" +
                         "5- out-bin [file name] -- saves the dictionary to the file (binary file)\n" +
                         "6- out-txt [file name] -- saves the dictionary to the file (text file)\n" +
-                        "3- help -- prints this message.\n");
+                        "7- help -- prints this message.\n");
 
     }
 
@@ -99,10 +138,16 @@ public class DictionaryApplication {
         secondIndexOf = input.indexOf("\"", firstIndexOf + 1);
         String description = input.substring(firstIndexOf + 1, secondIndexOf);
         this.myDictionary.addWord(word, description);
+        updateDictionaryMap();
         System.out.println("the word has been added successfully!");
+    }
+
+    private void updateDictionaryMap() {
+        fileUtils.writeDictionaryMap(this.myDictionary.getDictionaryMap(), fileUtils.getDictionaryMapFileName());
     }
 
     public void reset() {
         myDictionary.reset();
+        updateDictionaryMap();
     }
 }

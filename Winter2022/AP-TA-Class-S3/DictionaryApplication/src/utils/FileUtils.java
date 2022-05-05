@@ -21,11 +21,9 @@ public class FileUtils {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))){
             dictionaryMap = (HashMap<String, String>) in.readObject();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.err.println("file not found!");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("could not read from file!");
         }
         return dictionaryMap;
     }
