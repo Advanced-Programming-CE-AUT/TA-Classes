@@ -11,8 +11,8 @@ public class DictionaryApplication {
     private final FileUtils fileUtils;
 
     public DictionaryApplication() {
-        this.myDictionary = new MyDictionary();
         this.fileUtils = new FileUtils();
+        this.myDictionary = new MyDictionary(fileUtils.loadDictionaryMap());
     }
 
     public void run() {
