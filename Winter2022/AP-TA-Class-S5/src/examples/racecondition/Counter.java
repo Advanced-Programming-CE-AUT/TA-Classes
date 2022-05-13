@@ -1,4 +1,4 @@
-package com.raceCondition;
+package examples.racecondition;
 
 public class Counter {
     public int counter;

@@ -1,4 +1,4 @@
-package com.raceCondition;
+package examples.racecondition;
 
 public class RaceConditionExample implements Runnable {
     private final Counter counter;
@@ -14,7 +14,7 @@ public class RaceConditionExample implements Runnable {
 //        addition
         counter.add();
         System.out.println("after addition the current counter value is: " + counter.getCounter() + " in thread: " + Thread.currentThread().getName());
-        
+
 //        subtraction
         counter.subtract();
         System.out.println("after subtraction the current counter value is: " + counter.getCounter() + " in thread: " + Thread.currentThread().getName());
