@@ -1,4 +1,4 @@
-package examples.racecondition;
+package examples.raceCondition;
 
 public class RaceConditionExample implements Runnable {
     private final Counter counter;

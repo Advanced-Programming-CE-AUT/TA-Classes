@@ -1,4 +1,4 @@
-package examples.raceconditionsolved;
+package examples.raceConditionSolved;
 
 public class RaceConditionSolvedExample implements Runnable {
     private final Counter counter;
@@ -11,6 +11,7 @@ public class RaceConditionSolvedExample implements Runnable {
     public void run() {
         System.out.println("counter value: " + counter.getCounter() + " thread name: " + Thread.currentThread().getName());
 
+//        This is called synchronized data access
         synchronized (counter) {
 //        addition
             counter.add();

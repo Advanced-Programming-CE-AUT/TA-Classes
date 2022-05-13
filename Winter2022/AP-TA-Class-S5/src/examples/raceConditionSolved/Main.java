@@ -1,4 +1,4 @@
-package examples.raceconditionsolved;
+package examples.raceConditionSolved;
 
 public class Main {
     public static void main(String[] args) {

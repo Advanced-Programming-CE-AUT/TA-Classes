@@ -1,4 +1,4 @@
-package examples.racecondition;
+package examples.raceCondition;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,7 +6,7 @@ public class Main {
         new Thread(new RaceConditionExample(counter), "thread-1").start();
 
         new Thread(new RaceConditionExample(counter), "thread-2").start();
-        
+
         new Thread(new RaceConditionExample(counter), "thread-3").start();
     }
 }
