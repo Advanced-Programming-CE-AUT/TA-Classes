@@ -16,7 +16,6 @@ public class TaskOne implements Runnable {
         synchronized (resource1) {
             System.out.println(Thread.currentThread().getName() + " has locked resource 1");
 
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
