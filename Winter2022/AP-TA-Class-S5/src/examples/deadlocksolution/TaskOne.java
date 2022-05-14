@@ -1,4 +1,4 @@
-package examples.deadlock;
+package examples.deadlocksolution;
 
 public class TaskOne implements Runnable {
 

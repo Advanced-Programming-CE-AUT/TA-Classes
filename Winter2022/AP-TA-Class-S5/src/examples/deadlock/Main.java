@@ -7,6 +7,6 @@ public class Main {
 
         new Thread(new TaskOne(resource1, resource2), "thread-1").start();
 //        uncomment the TaskTwo Runnable to see Deadlock.
-        new Thread(new TaskTwo(resource1, resource2), "thread-2").start();
+//        new Thread(new TaskTwo(resource1, resource2), "thread-2").start();
     }
 }

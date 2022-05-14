@@ -16,3 +16,7 @@ this situation:
 
 For a deadlock to occur all above rules must hold simultaneously.
 
+## Solution
+
+Just make sure at least one of coffman rules doesn't hold at any given time!<br>
+
