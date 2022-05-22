@@ -34,7 +34,7 @@ public class Diner {
 
             spoon.use();
             this.isHungary = false;
-            System.out.printf("%s I'm finished, and not hungary any more %s", name, partner.getName());
+            System.out.printf("%s has finished, and isn't hungary any more\n", name);
             spoon.setDiner(partner);
         }
     }

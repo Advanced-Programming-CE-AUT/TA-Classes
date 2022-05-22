@@ -11,5 +11,6 @@ public class MemoryAccessSync implements Runnable {
     public void run() {
 //        a critical section
         counter.add();
+
     }
 }

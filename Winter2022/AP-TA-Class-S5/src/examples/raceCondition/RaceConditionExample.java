@@ -18,6 +18,5 @@ public class RaceConditionExample implements Runnable {
 //        subtraction
         counter.subtract();
         System.out.println("after subtraction the current counter value is: " + counter.getCounter() + " in thread: " + Thread.currentThread().getName());
-        System.out.println("-------");
     }
 }

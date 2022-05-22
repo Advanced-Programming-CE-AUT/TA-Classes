@@ -3,8 +3,13 @@ package examples.memoryAccessSynchronizationSolved;
 public class Main {
     public static void main(String[] args) {
         Counter counter = new Counter();
-        new Thread(new MemoryAccessSync(counter)).start();
-//        use .join() to solve this problem!
+        try {
+            Thread thread = new Thread(new MemoryAccessSync(counter));
+            thread.start();
+            thread.join();
+        } catch (InterruptedException e) {
+            System.err.println(e);
+        }
 
 //        a critical section
         if (counter.getCounter() == 0) {
