@@ -64,6 +64,7 @@ public class DictionaryApplication {
                 break;
             case "help":
                 helpCommand();
+                break;
             default:
                 throw new InvalidInputException();
         }

@@ -17,15 +17,14 @@ public class MyDictionary {
         return dictionaryMap;
     }
 
-    public void addWord(String word, String description) {
+    public synchronized void addWord(String word, String description) {
         this.dictionaryMap.put(word, description);
     }
-
     public String meaningOf(String word) {
         return this.dictionaryMap.get(word);
     }
 
-    public void reset() {
+    public synchronized void reset() {
         this.dictionaryMap.clear();
     }
 
